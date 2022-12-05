@@ -1,14 +1,20 @@
+import styled from "styled-components";
+
 export default function Navbar() {
   return (
-    <nav>
+    <NavContainer>
       <a href="/" className="site-title">
-        bz-react-hook-form-practice
+        home
       </a>
-      <ul>
-        <li>
-          <a href="login">Login</a>
-        </li>
-      </ul>
-    </nav>
+      <a href="/login">login</a>
+      <a href="/file">file</a>
+    </NavContainer>
   );
 }
+
+const NavContainer = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+`;
