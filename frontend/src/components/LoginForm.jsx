@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 export default function LoginForm() {
   const {
@@ -13,7 +14,7 @@ export default function LoginForm() {
   console.log(errors);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="email">이메일</label>
       <input
         type="text"
@@ -28,6 +29,13 @@ export default function LoginForm() {
       />
       {Boolean(errors?.name) ? <p>error</p> : null}
       <button type="submit">로그인</button>
-    </form>
+    </FormContainer>
   );
 }
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+`;
