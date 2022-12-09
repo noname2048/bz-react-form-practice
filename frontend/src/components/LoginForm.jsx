@@ -6,9 +6,11 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
+    trigger,
   } = useForm();
 
   const onSubmit = (data) => {
+    trigger("email");
     console.log(data);
   };
   console.log(errors);
