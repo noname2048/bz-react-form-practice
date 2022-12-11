@@ -4,9 +4,14 @@ import styled from "styled-components";
 const SurveyForm = () => {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const subscription = watch((value, { name, type }) =>
+    console.log(value, name, type)
+  );
 
   const onSubmit = (data) => {
     console.log(data);
