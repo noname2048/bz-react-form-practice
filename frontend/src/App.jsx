@@ -7,6 +7,7 @@ import Main from "./components/Main";
 import FileForm from "./components/FileForm";
 
 import styled from "styled-components";
+import SurveyForm from "./components/SurveyForm.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/file" element={<FileForm />} />
+        <Route path="/survey" element={<SurveyForm />} />
       </Routes>
     </div>
   );
