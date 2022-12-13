@@ -8,6 +8,7 @@ export default function Navbar() {
       </a>
       <a href="/login">login</a>
       <a href="/file">file</a>
+      <a href="/survey">survey</a>
     </NavContainer>
   );
 }
