@@ -18,7 +18,7 @@ const SurveyForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="email">이름</label>
       <input type="text" {...register("email")} />
       <label htmlFor="memo">메모</label>
@@ -28,8 +28,15 @@ const SurveyForm = () => {
         rows="10"
         {...register("memo")}
       ></textarea>
-    </form>
+    </FormContainer>
   );
 };
 
 export default SurveyForm;
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-content: center;
+`;
