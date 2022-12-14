@@ -1,5 +1,11 @@
 import { useForm } from "react-hook-form";
+import { atom, useRecoilValue } from "recoil";
 import styled from "styled-components";
+
+const storageFormValue = atom({
+  key: "formValue",
+  default: JSON.stringify(""),
+});
 
 const SurveyForm = () => {
   const {
@@ -9,9 +15,14 @@ const SurveyForm = () => {
     formState: { errors },
   } = useForm();
 
-  const subscription = watch((value, { name, type }) =>
-    console.log(value, name, type)
-  );
+  const [formValue, setFormValue] = useRecoilValue(storageFormValue);
+
+  const subscription = watch((value, { name, type }) => {
+    localStorage.setItem("form", JSON.stringify(value));
+    const temp = JSON.stringify(value);
+    setFormValue(temp);
+    console.log(value, name, type);
+  });
 
   const onSubmit = (data) => {
     console.log(data);
