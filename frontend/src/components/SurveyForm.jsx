@@ -39,6 +39,7 @@ const SurveyForm = () => {
         rows="10"
         {...register("memo")}
       ></textarea>
+      <button type="submit">submit</button>
     </FormContainer>
   );
 };
