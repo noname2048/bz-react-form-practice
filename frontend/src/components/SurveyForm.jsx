@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { usePersistForm } from "react-hook-form-persist";
+import useFormPersist from "react-hook-form-persist";
 import { atom, useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 
@@ -16,7 +16,8 @@ const SurveyForm = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  usePersistForm("storageKey", {
+
+  useFormPersist("storageKey", {
     watch,
     setValue,
     storage: window.localStorage,
