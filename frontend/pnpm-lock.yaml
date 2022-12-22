@@ -7,6 +7,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-hook-form: ^7.39.6
+  react-hook-form-persist: ^3.0.0
   react-router-dom: ^6.4.3
   recoil: ^0.7.6
   styled-components: ^5.3.6
@@ -16,6 +17,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.39.6_react@18.2.0
+  react-hook-form-persist: 3.0.0_6srx7a2qkkciqkbqwli3tmqvqm
   react-router-dom: 6.4.3_biqbaboplfbrettd7655fr4n2y
   recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
   styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
@@ -867,6 +869,16 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form-persist/3.0.0_6srx7a2qkkciqkbqwli3tmqvqm:
+    resolution: {integrity: sha512-6nwW65JyFpBem9RjLYAWvIFxOLoCk0E13iB9e5yeF5jeHlwx1ua0M77FvwhPpD8eaCz7hG4ziCdOxRcnJVUSxQ==}
+    peerDependencies:
+      react: '>= 16.3'
+      react-hook-form: '>= 6'
+    dependencies:
+      react: 18.2.0
+      react-hook-form: 7.39.6_react@18.2.0
     dev: false
 
   /react-hook-form/7.39.6_react@18.2.0:
