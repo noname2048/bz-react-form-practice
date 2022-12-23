@@ -14,6 +14,7 @@ const SurveyForm = () => {
     watch,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -49,6 +50,9 @@ const SurveyForm = () => {
         {...register("memo")}
       ></textarea>
       <button type="submit">submit</button>
+      <button type="reset" onClick={() => reset({})}>
+        cancel
+      </button>
     </FormContainer>
   );
 };
