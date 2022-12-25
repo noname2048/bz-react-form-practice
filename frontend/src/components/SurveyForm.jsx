@@ -50,9 +50,17 @@ const SurveyForm = () => {
         {...register("memo")}
       ></textarea>
       <button type="submit">submit</button>
-      <button type="reset" onClick={() => reset({})}>
-        cancel
-      </button>
+      <button
+        type="reset"
+        onClick={() => {
+          const result = window.confirm(
+            "모든 양식이 삭제됩니다. 계속하시겠습니까?"
+          );
+          if (result) {
+            reset({});
+          }
+        }}
+      ></button>
     </FormContainer>
   );
 };
