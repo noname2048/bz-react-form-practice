@@ -60,7 +60,9 @@ const SurveyForm = () => {
             reset({});
           }
         }}
-      ></button>
+      >
+        reset
+      </button>
     </FormContainer>
   );
 };
