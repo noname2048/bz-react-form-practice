@@ -63,6 +63,9 @@ const SurveyForm = () => {
       >
         reset
       </button>
+      <a href="http://localhost:3000/external/jobposts/8968a6d6-e362-4401-8d5c-62f4d4025632">
+        공고로 이동
+      </a>
     </FormContainer>
   );
 };
