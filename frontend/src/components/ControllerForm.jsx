@@ -1,26 +1,35 @@
 import { Controller, useForm } from "react-hook-form";
-import { checkbox } from "@material-ui/core";
+import { Checkbox } from "@mui/material";
 import CustomInput from "./CustomInput.jsx";
+import { useEffect } from "react";
 
 const ControllerForm = () => {
-  const { handleSubmit, control, reset } = useForm({
+  const { handleSubmit, control, reset, watch } = useForm({
     defaultValues: {
       checkbox: false,
     },
   });
 
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) =>
+      console.log(value, name, type)
+    );
+  }, [watch]);
+
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Controller
-        name="checkbox"
-        control={control}
-        rules={{ required: true }}
-        render={({ field }) => null}
-      />
-      <CustomInput />
-    </form>
+    <>
+      <p>HI</p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="checkbox"
+          control={control}
+          rules={{ required: true }}
+          render={({ field }) => <Checkbox {...field} />}
+        />
+      </form>
+    </>
   );
 };
 
