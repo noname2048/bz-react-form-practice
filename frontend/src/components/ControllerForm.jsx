@@ -2,6 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Checkbox } from "@mui/material";
 import CustomInput from "./CustomInput.jsx";
 import { useEffect } from "react";
+import { MyButton } from "./MyButton";
 
 const ControllerForm = () => {
   const { handleSubmit, control, reset, watch } = useForm({
@@ -28,6 +29,7 @@ const ControllerForm = () => {
           rules={{ required: true }}
           render={({ field }) => <Checkbox {...field} />}
         />
+        <MyButton text="버튼" />
       </form>
     </>
   );
