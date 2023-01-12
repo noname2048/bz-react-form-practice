@@ -6,6 +6,7 @@ specifiers:
   '@mui/material': ^5.11.1
   '@types/react': ^18.0.24
   '@types/react-dom': ^18.0.8
+  '@types/styled-components': ^5.1.26
   '@vitejs/plugin-react': ^2.2.0
   prettier: ^2.8.1
   react: ^18.2.0
@@ -22,6 +23,7 @@ dependencies:
   '@emotion/react': 11.10.5_cuziicjcvwawlf5iuhzacuhqcy
   '@emotion/styled': 11.10.5_hmjty4frusbltjhl3xd7udcm2y
   '@mui/material': 5.11.1_thp4wrxo45nyllusrnt46mid4u
+  '@types/styled-components': 5.1.26
   prettier: 2.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -660,6 +662,13 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
+  /@types/hoist-non-react-statics/3.3.1:
+    resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
+    dependencies:
+      '@types/react': 18.0.25
+      hoist-non-react-statics: 3.3.2
+    dev: false
+
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
     dev: false
@@ -694,6 +703,14 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
+
+  /@types/styled-components/5.1.26:
+    resolution: {integrity: sha512-KuKJ9Z6xb93uJiIyxo/+ksS7yLjS1KzG6iv5i78dhVg/X3u5t1H7juRWqVmodIdz6wGVaIApo1u01kmFRdJHVw==}
+    dependencies:
+      '@types/hoist-non-react-statics': 3.3.1
+      '@types/react': 18.0.25
+      csstype: 3.1.1
+    dev: false
 
   /@vitejs/plugin-react/2.2.0_vite@3.2.4:
     resolution: {integrity: sha512-FFpefhvExd1toVRlokZgxgy2JtnBOdp4ZDsq7ldCWaqGSGn9UhWMAVm/1lxPL14JfNS5yGz+s9yFrQY6shoStA==}
