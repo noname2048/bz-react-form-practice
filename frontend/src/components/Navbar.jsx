@@ -10,6 +10,7 @@ export default function Navbar() {
       <a href="/file">file</a>
       <a href="/survey">survey</a>
       <a href="/controller">controller</a>
+      <a href="/spinner">spinner</a>
     </NavContainer>
   );
 }

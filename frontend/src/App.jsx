@@ -6,6 +6,7 @@ import Main from "./components/Main";
 import FileForm from "./components/FileForm";
 import SurveyForm from "./components/SurveyForm.jsx";
 import ControllerForm from "./components/ControllerForm.jsx";
+import Spinner from "./components/Spinner";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/file" element={<FileForm />} />
         <Route path="/survey" element={<SurveyForm />} />
         <Route path="/controller" element={<ControllerForm />} />
+        <Route path="/spinner" element={<Spinner />} />
       </Routes>
     </div>
   );
