@@ -11,11 +11,13 @@ export default function Navbar() {
       <a href="/survey">survey</a>
       <a href="/controller">controller</a>
       <a href="/spinner">spinner</a>
+      <a href="/kanban">kanban</a>
     </NavContainer>
   );
 }
 
 const NavContainer = styled.nav`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
