@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+  body {
+    background: aliceblue;
+    margin: 30px;
+  }
 `;
 
 export default GlobalStyle;
