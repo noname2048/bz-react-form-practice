@@ -15,14 +15,6 @@ export default Kanban;
 
 const Container = styled.div`
   margin: 2rem 0rem;
-  height: 10rem;
   background-color: grey;
+  border: solid black 1px;
 `;
-
-const ToDoContainer = () => {
-  return <div></div>;
-};
-
-const ToDoList = () => {
-  return <div></div>;
-};
