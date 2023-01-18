@@ -30,5 +30,7 @@ function App() {
 export default App;
 
 const Container = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
   width: 100%;
 `;
