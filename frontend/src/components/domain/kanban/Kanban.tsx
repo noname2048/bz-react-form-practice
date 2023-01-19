@@ -17,4 +17,6 @@ const Container = styled.div`
   margin: 2rem 0rem;
   background-color: grey;
   border: solid black 1px;
+  width: 100%;
+  height: 800px;
 `;

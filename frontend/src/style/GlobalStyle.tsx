@@ -27,9 +27,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    place-items: normal legacy;
+    display: block;
     background: aliceblue;
   }
 

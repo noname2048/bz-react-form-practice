@@ -21,6 +21,7 @@ const NavContainer = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 2rem;
-  border: black solid 1px;
+  margin: 20px 0;
+  gap: 4rem;
+  background: white;
 `;
