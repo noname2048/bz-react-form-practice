@@ -7,13 +7,15 @@ import SurveyForm from "./components/SurveyForm.jsx";
 import ControllerForm from "./components/ControllerForm.jsx";
 import Spinner from "./components/Spinner";
 import Kanban from "./components/domain/kanban/Kanban";
+import { useLocation } from "react-router-dom";
 
 import styled from "styled-components";
 
 function App() {
+  const location = useLocation();
   return (
     <Container className="App">
-      <Navbar />
+      {location.pathname === "/kanban" ? null : <Navbar />}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<LoginForm />} />

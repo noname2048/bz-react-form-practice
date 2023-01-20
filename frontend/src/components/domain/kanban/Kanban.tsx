@@ -5,7 +5,6 @@ import KanbanBoard from "./KanbanBoard";
 const Kanban = (props: {}) => {
   return (
     <Container>
-      <KanbanNav />
       <KanbanBoard />
     </Container>
   );
@@ -14,9 +13,8 @@ const Kanban = (props: {}) => {
 export default Kanban;
 
 const Container = styled.div`
-  margin: 2rem 0rem;
+  margin: 0;
   background-color: grey;
-  border: solid black 1px;
   width: 100%;
-  height: 800px;
+  height: 100vh;
 `;
