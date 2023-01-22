@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import Button from "@mui/material/Button";
 
 const KanbanNav = () => {
   return (
     <Container>
-      <Button variant="contained">add</Button>
-      <Button variant="outlined">save</Button>
+      <span>status: 2</span>
     </Container>
   );
 };
@@ -13,10 +11,11 @@ const KanbanNav = () => {
 export default KanbanNav;
 
 const Container = styled.div`
+  color: white;
   display: flex;
+  padding: 10px;
   flex-flow: row nowrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  gap: 0.5rem;
   background-color: darkslateblue;
 `;

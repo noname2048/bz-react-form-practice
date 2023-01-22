@@ -2,9 +2,10 @@ import styled from "styled-components";
 import KanbanNav from "./KanbanNav";
 import KanbanBoard from "./KanbanBoard";
 
-const Kanban = (props: {}) => {
+const Kanban = () => {
   return (
     <Container>
+      <KanbanNav />
       <KanbanBoard />
     </Container>
   );
