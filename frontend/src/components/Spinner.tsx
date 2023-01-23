@@ -1,4 +1,3 @@
-import { ReactElement } from "react";
 import styled from "styled-components";
 
 const Spinner = (props: {
@@ -53,7 +52,7 @@ const Circle = styled.div<{
   }
 `;
 
-const Container = styled.div<{}>`
+const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
