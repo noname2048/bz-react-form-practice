@@ -8,8 +8,11 @@ import ControllerForm from "./components/ControllerForm.jsx";
 import Spinner from "./components/Spinner";
 import Kanban from "./components/domain/kanban/Kanban";
 import { useLocation } from "react-router-dom";
+import TodoIndex from "./components/domain/todo/TodoIndex";
 
 import styled from "styled-components";
+
+const excludeNav = ["/kanban", "/Todo"];
 
 function App() {
   const location = useLocation();
@@ -24,6 +27,7 @@ function App() {
         <Route path="/controller" element={<ControllerForm />} />
         <Route path="/spinner" element={<Spinner />} />
         <Route path="/kanban" element={<Kanban />} />
+        <Route path="/Todo" element={<TodoIndex />} />
       </Routes>
     </Container>
   );

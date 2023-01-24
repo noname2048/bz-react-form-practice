@@ -12,6 +12,7 @@ export default function Navbar() {
       <a href="/controller">controller</a>
       <a href="/spinner">spinner</a>
       <a href="/kanban">kanban</a>
+      <a href="/Todo">Todo</a>
     </NavContainer>
   );
 }
