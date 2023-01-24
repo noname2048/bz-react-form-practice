@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Task from "./Task";
-import { Droppable } from "react-beautiful-dnd";
+import { StrictModeDroppable } from "./StrictModeDroppable";
 
 const Container = styled.div`
   margin: 8px;
@@ -14,20 +14,20 @@ const TaskList = styled.div`
   padding: 8px;
 `;
 
-const Column = ({ title, tasks, column }) => {
+const Column = ({ tasks, column }) => {
   return (
     <Container>
-      <Title>{title}</Title>
-      <Droppable droppableId={column.id}>
+      <Title>{column.title}</Title>
+      <StrictModeDroppable droppableId={column.id}>
         {(provided) => (
-          <TaskList innerRef={provided.InnerRef} {...provided.droppableProps}>
+          <TaskList ref={provided.innerRef} {...provided.droppableProps}>
             {tasks.map((task, index) => (
               <Task key={task.id} task={task} index={index} />
             ))}
             {provided.placeholder}
           </TaskList>
         )}
-      </Droppable>
+      </StrictModeDroppable>
     </Container>
   );
 };

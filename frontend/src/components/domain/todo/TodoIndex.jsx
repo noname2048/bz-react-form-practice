@@ -6,21 +6,14 @@ import { DragDropContext } from "react-beautiful-dnd";
 const TodoIndex = () => {
   const [state, setState] = useState(initialData);
 
-  const onDragEnd = (result) => {};
+  const onDragEnd = (result) => null;
   return (
     <div>
       <DragDropContext onDragEnd={onDragEnd}>
         {state.columnOrder.map((columnId) => {
           const column = state.columns[columnId];
           const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
-          return (
-            <Column
-              key={column.id}
-              title={column.title}
-              column={column}
-              tasks={tasks}
-            />
-          );
+          return <Column key={column.id} column={column} tasks={tasks} />;
         })}
       </DragDropContext>
     </div>

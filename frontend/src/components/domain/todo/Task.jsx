@@ -10,12 +10,12 @@ const Container = styled.div`
 
 const Task = ({ task, index }) => {
   return (
-    <Draggable draggableI={task.id} index={index}>
+    <Draggable draggableId={task.id} index={index}>
       {(provided) => (
         <Container
+          ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          innerRef={provided.innerRef}
         >
           {task.content}
         </Container>
