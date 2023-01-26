@@ -32,7 +32,7 @@ const TodoIndex = () => {
 
     const newState = {
       ...state,
-      columns: { ...state.columns, [newColum.id]: newColum },
+      columns: { ...state.columns, [newColum.id]: newColum }, // 무슨 문법인지 알아볼것
     };
     setState(newState);
   };
