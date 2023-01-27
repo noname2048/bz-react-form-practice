@@ -32,7 +32,9 @@ const TodoIndex = () => {
 
     const newState = {
       ...state,
-      columns: { ...state.columns, [newColum.id]: newColum }, // 무슨 문법인지 알아볼것
+      columns: { ...state.columns, [newColum.id]: newColum },
+      // 무슨 문법인지 알아볼것 -> 계산된 속성이름 구조 분해 (computed property name)
+      // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
     };
     setState(newState);
   };
