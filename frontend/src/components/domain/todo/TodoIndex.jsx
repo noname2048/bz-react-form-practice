@@ -10,8 +10,10 @@ const Container = styled.div`
 
 const TodoIndex = () => {
   const [state, setState] = useState(initialData);
+  const [homeIndex, setHomeIndex] = useState(0);
+  const onDragStart = (start) => {
+    setHomeIndex(state.columnOrder.indexOf(start.source.droppableId));
 
-  const onDragStart = () => {
     document.body.style.color = "orange";
     document.body.style.transition = "background-color 0.2s ease";
   };
@@ -25,6 +27,8 @@ const TodoIndex = () => {
   };
 
   const onDragEnd = (result) => {
+    setHomeIndex(null);
+
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
     const { destination, source, draggableId } = result;
@@ -96,10 +100,18 @@ const TodoIndex = () => {
         onDragUpdate={onDragUpdate}
       >
         <Container>
-          {state.columnOrder.map((columnId) => {
+          {state.columnOrder.map((columnId, index) => {
             const column = state.columns[columnId];
             const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
-            return <Column key={column.id} column={column} tasks={tasks} />;
+            const isDropDisabled = index < homeIndex;
+            return (
+              <Column
+                key={column.id}
+                column={column}
+                tasks={tasks}
+                isDropDisabled={isDropDisabled}
+              />
+            );
           })}
         </Container>
       </DragDropContext>
