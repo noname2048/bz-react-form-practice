@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Task from "./Task";
 import { StrictModeDroppable } from "./StrictModeDroppable";
+import { Draggable } from "react-beautiful-dnd";
 
 const Container = styled.div`
   margin: 8px;
@@ -21,28 +22,33 @@ const TaskList = styled.div`
   min-height: 100px;
 `;
 
-const Column = ({ tasks, column, isDropDisabled }) => {
+const Column = ({ tasks, column, isDropDisabled, index }) => {
   return (
-    <Container>
-      <Title>{column.title}</Title>
-      <StrictModeDroppable
-        droppableId={column.id}
-        isDropDisabled={isDropDisabled}
-      >
-        {(provided, snapshot) => (
-          <TaskList
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            isDraggingOver={snapshot.isDraggingOver}
+    <Draggable draggableId={column.id} index={index}>
+      {(provided) => (
+        <Container {...provided.draggableProps} ref={provided.innerRef}>
+          <Title {...provided.dragHandleProps}>{column.title}</Title>
+          <StrictModeDroppable
+            droppableId={column.id}
+            isDropDisabled={isDropDisabled}
+            type="task"
           >
-            {tasks.map((task, index) => (
-              <Task key={task.id} task={task} index={index} />
-            ))}
-            {provided.placeholder}
-          </TaskList>
-        )}
-      </StrictModeDroppable>
-    </Container>
+            {(provided, snapshot) => (
+              <TaskList
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                isDraggingOver={snapshot.isDraggingOver}
+              >
+                {tasks.map((task, index) => (
+                  <Task key={task.id} task={task} index={index} />
+                ))}
+                {provided.placeholder}
+              </TaskList>
+            )}
+          </StrictModeDroppable>
+        </Container>
+      )}
+    </Draggable>
   );
 };
 

@@ -2,7 +2,7 @@ import initialData from "./data.js";
 import { useState } from "react";
 import Column from "./Column";
 import styled from "styled-components";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 const Container = styled.div`
   display: flex;
@@ -99,21 +99,33 @@ const TodoIndex = () => {
         onDragStart={onDragStart}
         onDragUpdate={onDragUpdate}
       >
-        <Container>
-          {state.columnOrder.map((columnId, index) => {
-            const column = state.columns[columnId];
-            const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
-            const isDropDisabled = index < homeIndex;
-            return (
-              <Column
-                key={column.id}
-                column={column}
-                tasks={tasks}
-                isDropDisabled={isDropDisabled}
-              />
-            );
-          })}
-        </Container>
+        <Droppable
+          droppableId="all-columns"
+          direction="horizontal"
+          type="column"
+        >
+          {(provided) => (
+            <Container {...provided.droppableProps} ref={provided.innerRef}>
+              {state.columnOrder.map((columnId, index) => {
+                const column = state.columns[columnId];
+                const tasks = column.taskIds.map(
+                  (taskId) => state.tasks[taskId]
+                );
+                const isDropDisabled = index < homeIndex;
+                return (
+                  <Column
+                    key={column.id}
+                    column={column}
+                    tasks={tasks}
+                    isDropDisabled={isDropDisabled}
+                    index={index}
+                  />
+                );
+              })}
+              {provided.placeholder}
+            </Container>
+          )}
+        </Droppable>
       </DragDropContext>
     </div>
   );
