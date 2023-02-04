@@ -3,6 +3,7 @@ import { useState } from "react";
 import Column from "./Column";
 import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { StrictModeDroppable } from "./StrictModeDroppable";
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +32,7 @@ const TodoIndex = () => {
 
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
-    const { destination, source, draggableId } = result;
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) {
       return;
@@ -42,6 +43,18 @@ const TodoIndex = () => {
       destination.index === source.index
     ) {
       return;
+    }
+
+    if (type === "column") {
+      const newColumnOrder = Array.from(state.columnOrder);
+      newColumnOrder.splice(source.index, 1);
+      newColumnOrder.splice(destination.index, 0, draggableId);
+
+      const newState = {
+        ...state,
+        columnOrder: newColumnOrder,
+      };
+      setState(newState);
     }
 
     const start = state.columns[source.droppableId];
@@ -99,7 +112,7 @@ const TodoIndex = () => {
         onDragStart={onDragStart}
         onDragUpdate={onDragUpdate}
       >
-        <Droppable
+        <StrictModeDroppable
           droppableId="all-columns"
           direction="horizontal"
           type="column"
@@ -125,7 +138,7 @@ const TodoIndex = () => {
               {provided.placeholder}
             </Container>
           )}
-        </Droppable>
+        </StrictModeDroppable>
       </DragDropContext>
     </div>
   );
