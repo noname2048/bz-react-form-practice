@@ -2,7 +2,7 @@ import initialData from "./data.js";
 import { useState } from "react";
 import Column from "./Column";
 import styled from "styled-components";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 
 const Container = styled.div`
