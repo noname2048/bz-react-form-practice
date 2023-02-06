@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 
-const Container = styled.div`
+const Container = styled.div<{ isDragging: boolean; isDragDisabled: boolean }>`
   border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
@@ -20,8 +20,14 @@ const Handle = styled.div`
   margin-right: 8px;
 `;
 
-const Task = ({ task, index }) => {
-  const isDragDisabled = task.id === "task-1";
+const Task = ({
+  task,
+  index,
+}: {
+  task: { id: string; content: string };
+  index: number;
+}) => {
+  const isDragDisabled: boolean = task.id === "task-1";
   return (
     <Draggable
       draggableId={task.id}
