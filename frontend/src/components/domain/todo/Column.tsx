@@ -12,22 +12,36 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const Title = styled.h3`
   padding: 8px;
 `;
-const TaskList = styled.div`
+
+const TaskList = styled.div<{ isDraggingOver: boolean }>`
   padding: 8px;
-  background-color: ${(props) => (props.isDraggingOver ? "skyblue" : "white")};
+  background-color: ${({ isDraggingOver }) =>
+    isDraggingOver ? "skyblue" : "white"};
   flex-grow: 1;
   min-height: 100px;
 `;
 
-const Column = ({ tasks, column, isDropDisabled, index }) => {
+const Column = ({
+  tasks,
+  column,
+  isDropDisabled,
+  index,
+}: {
+  tasks: Array<{ id: string; content: string }>;
+  column: { id: string; title: string; taskIds: Array<string> };
+
+  isDropDisabled: boolean;
+  index: number;
+}) => {
   return (
     <Draggable draggableId={column.id} index={index}>
-      {(provided) => (
-        <Container {...provided.draggableProps} ref={provided.innerRef}>
-          <Title {...provided.dragHandleProps}>{column.title}</Title>
+      {(props) => (
+        <Container {...props.draggableProps} ref={props.innerRef}>
+          <Title {...props.dragHandleProps}>{column.title}</Title>
           <StrictModeDroppable
             droppableId={column.id}
             isDropDisabled={isDropDisabled}
@@ -39,7 +53,7 @@ const Column = ({ tasks, column, isDropDisabled, index }) => {
                 {...provided.droppableProps}
                 isDraggingOver={snapshot.isDraggingOver}
               >
-                {tasks.map((task, index) => (
+                {tasks.map((task, index: number) => (
                   <Task key={task.id} task={task} index={index} />
                 ))}
                 {provided.placeholder}
