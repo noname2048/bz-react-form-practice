@@ -10,16 +10,22 @@ const Container = styled.div`
 `;
 
 const TodoIndex = () => {
-  const [state, setState] = useState(initialData);
-  const [homeIndex, setHomeIndex] = useState(0);
-  const onDragStart = (start) => {
+  const [state, setState] = useState<{
+    tasks: Array<{ [taskId: string]: { id: number; content: string } }>;
+    columns: Array<{
+      [columnId: string]: { id: string; title: string; taskIds: Array<string> };
+    }>;
+    columnOrder: Array<string>;
+  }>(initialData);
+  const [homeIndex, setHomeIndex] = useState<number | null>(0);
+  const onDragStart = (start: { source: { droppableId: string } }) => {
     setHomeIndex(state.columnOrder.indexOf(start.source.droppableId));
 
     document.body.style.color = "orange";
     document.body.style.transition = "background-color 0.2s ease";
   };
 
-  const onDragUpdate = (update) => {
+  const onDragUpdate = (update: { destination: { index: number } }) => {
     const { destination } = update;
     const opacity = destination
       ? destination.index / Object.keys(state.tasks).length
@@ -27,7 +33,12 @@ const TodoIndex = () => {
     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   };
 
-  const onDragEnd = (result) => {
+  const onDragEnd = (result: {
+    destination: { droppableId: string; index: number };
+    source: { droppableId: string; index: number };
+    draggableId: string;
+    type: string;
+  }) => {
     setHomeIndex(null);
 
     document.body.style.color = "inherit";
