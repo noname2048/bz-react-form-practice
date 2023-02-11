@@ -1,22 +1,17 @@
-import initialData from "./data.js";
+import initialData from "./data";
 import { useState } from "react";
 import Column from "./Column";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
+import {InitData} from "./dataTypes";
 
 const Container = styled.div`
   display: flex;
 `;
 
 const TodoIndex = () => {
-  const [state, setState] = useState<{
-    tasks: Array<{ [taskId: string]: { id: number; content: string } }>;
-    columns: Array<{
-      [columnId: string]: { id: string; title: string; taskIds: Array<string> };
-    }>;
-    columnOrder: Array<string>;
-  }>(initialData);
+  const [state, setState] = useState<InitData>(initialData);
   const [homeIndex, setHomeIndex] = useState<number | null>(0);
   const onDragStart = (start: { source: { droppableId: string } }) => {
     setHomeIndex(state.columnOrder.indexOf(start.source.droppableId));
