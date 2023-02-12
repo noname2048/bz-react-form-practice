@@ -15,22 +15,37 @@ export interface InitData  {
     columnOrder: Array<string>
 }
 
-export interface droppableContent {
-    droppableId: string
-    index: number
+export interface DraggableLocation {
+    droppableId: string,
+    index: number,
+}
+
+export interface DroppableRubric {
+    draggableId: string,
+    type: string,
+    source: DraggableLocation,
+}
+
+// type 과 interface 의 차이를 알아볼것
+export type DragStart {
+    ...DroppableRubric
 }
 
 export interface OnDragStart {
-    source: droppableContent
+    ...DropableRubric,
 }
 
-export interface OnDragUpdate {
-    destination: droppableContent
+export interface DragUpdate {
+    destination: DroppableRubric
 }
 
 export interface OnDragEnd {
-    source: droppableContent,
-    destination: droppableContent,
+    source: DroppableRubric,
+    destination: DroppableRubric,
     draggableId: string,
     type: string
+}
+
+export interface InitData {
+
 }
