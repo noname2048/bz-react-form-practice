@@ -58,4 +58,8 @@ export interface OnDragEnd {
   type: string;
 }
 
-export interface InitData {}
+export interface IniData {
+  tasks: {[id: string]: Task},
+  columns: {[id: string]: Column},
+  columnOrder: Array<string>,
+}
