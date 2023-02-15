@@ -130,7 +130,7 @@ const TodoIndex = () => {
                 const tasks = column.taskIds.map(
                   (taskId) => state.tasks[taskId]
                 );
-                const isDropDisabled = index < homeIndex;
+                const isDropDisabled = homeIndex == null ? false: index < homeIndex;
                 return (
                   <Column
                     key={column.id}
