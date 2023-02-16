@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const Spinner = (props: {
-  spinnerSize: string;
-  color: string;
-  pointColor: string;
-  text: string;
+  spinnerSize?: string;
+  color?: string;
+  pointColor?: string;
+  text?: string;
 }) => {
   const {
     spinnerSize = "",
