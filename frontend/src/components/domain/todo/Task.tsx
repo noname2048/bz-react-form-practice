@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 const Container = styled.div<{ isDragging: boolean; isDragDisabled: boolean }>`
@@ -19,6 +20,27 @@ const Handle = styled.div`
   border-radius: 4px;
   margin-right: 8px;
 `;
+
+const Input = ({ value }: { value: string }) => {
+  const [disable, setDisable] = useState<boolean>(true);
+  const [memo, setMemo] = useState<string>(value);
+  const [click, setClick] = useState<boolean>(false);
+
+  if (click) {
+    return <div>{memo}</div>
+  }
+  return (
+    <input
+      type="text"
+      value={memo}
+      onClick={() => {
+        console.log("toggle");
+        setDisable(!disable);
+      }}
+      onChange={(e) => setMemo(e.target.value)}
+    />
+  );
+};
 
 const Task = ({
   task,
@@ -42,7 +64,7 @@ const Task = ({
           isDragDisabled={isDragDisabled}
         >
           <Handle {...provided.dragHandleProps} />
-          {task.content}
+          <Input value={task.content} />
         </Container>
       )}
     </Draggable>
