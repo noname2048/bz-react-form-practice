@@ -27,8 +27,17 @@ const Input = ({ value }: { value: string }) => {
   const [click, setClick] = useState<boolean>(false);
 
   if (click) {
-    return <div>{memo}</div>
+    return (
+      <div
+        onChange={() => {
+          setClick(!click);
+        }}
+      >
+        {memo}
+      </div>
+    );
   }
+
   return (
     <input
       type="text"
