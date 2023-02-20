@@ -57,56 +57,65 @@ const TodoIndex = () => {
         columnOrder: newColumnOrder,
       };
       setState(newState);
+      return;
     }
 
-    const start = state.columns[source.droppableId];
-    const finish = state.columns[destination.droppableId];
+    if (type === "task") {
+      const startColumn = state.columns[source.droppableId];
+      const finishColumn = state.columns[destination.droppableId];
 
-    if (start === finish) {
-      const column = state.columns[source.droppableId];
-      const newTaskIds = Array.from(column.taskIds);
-      newTaskIds.splice(source.index, 1);
-      newTaskIds.splice(destination.index, 0, draggableId);
+      if (startColumn.id === finishColumn.id) {
+        const column = state.columns[source.droppableId];
+        const newTaskIds = Array.from(column.taskIds);
+        newTaskIds.splice(source.index, 1);
+        newTaskIds.splice(destination.index, 0, draggableId);
 
-      const newColum = {
-        ...column,
-        taskIds: newTaskIds,
+        const newColum = {
+          ...column,
+          taskIds: newTaskIds,
+        };
+
+        const newState = {
+          ...state,
+          columns: { ...state.columns, [newColum.id]: newColum },
+          // 무슨 문법인지 알아볼것 -> 계산된 속성이름 구조 분해 (computed property name)
+          // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+        };
+        setState(newState);
+        return;
+      }
+
+      // startColumn != finishColumn
+      const renewStartTaskIds = Array.from(startColumn.taskIds);
+      const renewFinishTaskIds = Array.from(finishColumn.taskIds);
+
+      renewStartTaskIds.splice(source.index, 1);
+      renewFinishTaskIds.splice(destination.index, 0, draggableId);
+
+      const newStartColumn = {
+        ...startColumn,
+        taskIds: renewStartTaskIds,
+      };
+      const newFinishColumn = {
+        ...finishColumn,
+        taskIds: renewFinishTaskIds,
       };
 
       const newState = {
         ...state,
-        columns: { ...state.columns, [newColum.id]: newColum },
-        // 무슨 문법인지 알아볼것 -> 계산된 속성이름 구조 분해 (computed property name)
-        // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+        columns: {
+          ...state.columns,
+          [newStartColumn.id]: newStartColumn,
+          [newFinishColumn.id]: newFinishColumn,
+        },
       };
       setState(newState);
-      return;
+      return
     }
 
-    const startTaskIds = Array.from(start.taskIds);
-    startTaskIds.splice(source.index, 1);
-    const newStart = {
-      ...start,
-      taskIds: startTaskIds,
-    };
-
-    const finishTaskIds = Array.from(finish.taskIds);
-    finishTaskIds.splice(destination.index, 0, draggableId);
-    const newFinish = {
-      ...finish,
-      taskIds: finishTaskIds,
-    };
-
-    const newState = {
-      ...state,
-      columns: {
-        ...state.columns,
-        [newStart.id]: newStart,
-        [newFinish.id]: newFinish,
-      },
-    };
-    setState(newState);
+    // no matched types?
   };
+
   return (
     <div>
       <DragDropContext
