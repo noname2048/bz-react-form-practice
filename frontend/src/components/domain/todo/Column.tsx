@@ -33,7 +33,6 @@ const Column = ({
 }: {
   tasks: Array<{ id: string; content: string }>;
   column: { id: string; title: string; taskIds: Array<string> };
-
   isDropDisabled: boolean;
   index: number;
 }) => {

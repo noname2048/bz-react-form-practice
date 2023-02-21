@@ -4,8 +4,8 @@ import Column from "./Column";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
-import {InitData} from "./dataTypes";
-import {DragStart, DragUpdate, DropResult} from "react-beautiful-dnd";
+import { InitData } from "./dataTypes";
+import { DragStart, DragUpdate, DropResult } from "react-beautiful-dnd";
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +15,9 @@ const TodoIndex = () => {
   const [state, setState] = useState<InitData>(initialData);
   const [homeIndex, setHomeIndex] = useState<number | null>(0);
   const onDragStart = (start: DragStart): void => {
-    setHomeIndex(state.columnOrder.indexOf(start.source.droppableId));
+    const temp = state.columnOrder.indexOf(start.source.droppableId)
+    console.log(temp);
+    setHomeIndex(temp);
 
     document.body.style.color = "orange";
     document.body.style.transition = "background-color 0.2s ease";
@@ -110,7 +112,7 @@ const TodoIndex = () => {
         },
       };
       setState(newState);
-      return
+      return;
     }
 
     // no matched types?
@@ -135,7 +137,7 @@ const TodoIndex = () => {
                 const tasks = column.taskIds.map(
                   (taskId) => state.tasks[taskId]
                 );
-                const isDropDisabled = homeIndex == null ? false: index < homeIndex;
+                const isDropDisabled = false;
                 return (
                   <Column
                     key={column.id}
