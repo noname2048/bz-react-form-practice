@@ -6,12 +6,22 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import { InitData } from "./dataTypes";
 import { DragStart, DragUpdate, DropResult } from "react-beautiful-dnd";
+import {atom, useRecoilState} from "recoil";
 
 const Container = styled.div`
   display: flex;
 `;
 
+const todoListState = atom({
+  key: "todoListState",
+  default: {
+    "tasks": {},
+    "columns": {},
+  }
+})
+
 const TodoIndex = () => {
+  const todoList = useRecoilState(todoListState)
   const [state, setState] = useState<InitData>(initialData);
   const [homeIndex, setHomeIndex] = useState<number | null>(0);
   const onDragStart = (start: DragStart): void => {

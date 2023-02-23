@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
+import ComfortTyper from "./ComfortTyper";
+
 const Container = styled.div<{ isDragging: boolean; isDragDisabled: boolean }>`
   border: 1px solid lightgrey;
   border-radius: 2px;
@@ -39,15 +41,16 @@ const Input = ({ value }: { value: string }) => {
   }
 
   return (
-    <input
-      type="text"
-      value={memo}
-      onClick={() => {
-        console.log("toggle");
-        setDisable(!disable);
-      }}
-      onChange={(e) => setMemo(e.target.value)}
-    />
+      <ComfortTyper value={memo}/>
+    // <input
+    //   type="text"
+    //   value={memo}
+    //   onClick={() => {
+    //     console.log("toggle");
+    //     setDisable(!disable);
+    //   }}
+    //   onChange={(e) => setMemo(e.target.value)}
+    // />
   );
 };
 
