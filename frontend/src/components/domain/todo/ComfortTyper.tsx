@@ -5,12 +5,6 @@ const ComfortTyper = ({ value }: { value: string }) => {
   const [text, setText] = useState(value);
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    const timeoutID = setTimeout(() => {
-      inputRef && inputRef.current.focus();
-    });
-  }, [changeable]);
-
   if (changeable) {
     return (
       <input
@@ -26,9 +20,6 @@ const ComfortTyper = ({ value }: { value: string }) => {
     <div
       onClick={() => {
         setChangeable(!changeable);
-        const timeoutId = setTimeout(() => {
-          inputRef.current.focus();
-        });
       }}
     >
       {text}
