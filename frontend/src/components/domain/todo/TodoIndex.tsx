@@ -12,22 +12,20 @@ const Container = styled.div`
   display: flex;
 `;
 
-const todoListState = atom({
+const todoDataState = atom<InitData>({
   key: "todoListState",
-  default: {
-    "tasks": {},
-    "columns": {},
-  }
+  default: initialData,
 })
 
 const TodoIndex = () => {
-  const todoList = useRecoilState(todoListState)
-  const [state, setState] = useState<InitData>(initialData);
-  const [homeIndex, setHomeIndex] = useState<number | null>(0);
+  const [state, setState] = useRecoilState(todoDataState)
+
+  // const [state, setState] = useState<InitData>(initialData);
+  // const [homeIndex, setHomeIndex] = useState<number | null>(0);
   const onDragStart = (start: DragStart): void => {
-    const temp = state.columnOrder.indexOf(start.source.droppableId)
-    console.log(temp);
-    setHomeIndex(temp);
+    // const temp = state.columnOrder.indexOf(start.source.droppableId)
+    // console.log(temp);
+    // setHomeIndex(temp);
 
     document.body.style.color = "orange";
     document.body.style.transition = "background-color 0.2s ease";
@@ -42,7 +40,7 @@ const TodoIndex = () => {
   };
 
   const onDragEnd = (result: DropResult) => {
-    setHomeIndex(null);
+    // setHomeIndex(null);
 
     document.body.style.color = "inherit";
     document.body.style.backgroundColor = "inherit";
