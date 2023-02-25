@@ -3,6 +3,9 @@ import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 import ComfortTyper from "./ComfortTyper";
+import { useRecoilState } from "recoil";
+import { InitData } from "./dataTypes";
+import data from "./data";
 
 const Container = styled.div<{ isDragging: boolean; isDragDisabled: boolean }>`
   border: 1px solid lightgrey;
@@ -23,34 +26,37 @@ const Handle = styled.div`
   margin-right: 8px;
 `;
 
-const Input = ({ value }: { value: string }) => {
+const Input = ({ taskId, value }: { taskId: string; value: string }) => {
   const [disable, setDisable] = useState<boolean>(true);
-  const [memo, setMemo] = useState<string>(value);
-  const [click, setClick] = useState<boolean>(false);
+  const [state, setState] = useRecoilState<InitData>(data);
+  // const [memo, setMemo] = useState<string>(value);
+  // const [click, setClick] = useState<boolean>(false);
 
-  if (click) {
-    return (
-      <div
-        onChange={() => {
-          setClick(!click);
-        }}
-      >
-        {memo}
-      </div>
-    );
-  }
+  // if (click) {
+  //   return (
+  //     <div
+  //       onChange={() => {
+  //         setClick(!click);
+  //       }}
+  //     >
+  //       {memo}
+  //     </div>
+  //   );
+  // }
 
   return (
-      <ComfortTyper value={memo}/>
-    // <input
-    //   type="text"
-    //   value={memo}
-    //   onClick={() => {
-    //     console.log("toggle");
-    //     setDisable(!disable);
-    //   }}
-    //   onChange={(e) => setMemo(e.target.value)}
-    // />
+    // <ComfortTyper value={memo}/>
+    <input
+      type="text"
+      value={value + taskId}
+      onClick={() => {
+        console.log("toggle");
+        setDisable(!disable);
+      }}
+      onChange={(e) => {
+        e.target.value;
+      }}
+    />
   );
 };
 
@@ -76,7 +82,7 @@ const Task = ({
           isDragDisabled={isDragDisabled}
         >
           <Handle {...provided.dragHandleProps} />
-          <Input value={task.content} />
+          <Input value={task.content} taskId={task.id} />
         </Container>
       )}
     </Draggable>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Task from "./Task";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import { Draggable } from "react-beautiful-dnd";
+import { selector } from "recoil";
 
 const Container = styled.div`
   margin: 8px;

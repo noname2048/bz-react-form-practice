@@ -1,3 +1,6 @@
+import { atom } from "recoil";
+import { InitData } from "./dataTypes";
+
 const initialData = {
   tasks: {
     "task-1": { id: "task-1", content: "물마시기" },
@@ -25,4 +28,9 @@ const initialData = {
   columnOrder: ["column-1", "column-2", "column-3"],
 };
 
-export default initialData;
+const data = atom<InitData>({
+  key: "todoListState",
+  default: initialData,
+});
+
+export default data;

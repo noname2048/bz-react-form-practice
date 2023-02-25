@@ -1,64 +1,58 @@
-import initialData from "./data";
+import data from "./data";
 import { useState } from "react";
 import Column from "./Column";
 import styled from "styled-components";
-import { DragDropContext } from "react-beautiful-dnd";
+import {DragDropContext, DroppableProvided} from "react-beautiful-dnd";
 import { StrictModeDroppable } from "./StrictModeDroppable";
 import { InitData } from "./dataTypes";
 import { DragStart, DragUpdate, DropResult } from "react-beautiful-dnd";
-import {atom, useRecoilState} from "recoil";
+import { atom, useRecoilState } from "recoil";
 
 const Container = styled.div`
   display: flex;
 `;
 
-const todoDataState = atom<InitData>({
-  key: "todoListState",
-  default: initialData,
-})
 
 const TodoIndex = () => {
-  const [state, setState] = useRecoilState(todoDataState)
-
-  // const [state, setState] = useState<InitData>(initialData);
-  // const [homeIndex, setHomeIndex] = useState<number | null>(0);
-  const onDragStart = (start: DragStart): void => {
-    // const temp = state.columnOrder.indexOf(start.source.droppableId)
-    // console.log(temp);
-    // setHomeIndex(temp);
-
-    document.body.style.color = "orange";
-    document.body.style.transition = "background-color 0.2s ease";
+  const [state, setState] = useRecoilState(data);
+  const {columns, columnOrder} = state;
+  const onDragStart = ({ draggableId, type }: DragStart): void => {
+    // document.body.style.color = "orange";
+    // document.body.style.transition = "background-color 0.2s ease";
+    // if (type === "task") {
+    //
+    // }
   };
 
   const onDragUpdate = (update: DragUpdate) => {
-    const { destination } = update;
-    const opacity = destination
-      ? destination.index / Object.keys(state.tasks).length
-      : 0;
-    document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
+    // const { destination } = update;
+    // const opacity = destination
+    //   ? destination.index / Object.keys(state.tasks).length
+    //   : 0;
+    // document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   };
 
-  const onDragEnd = (result: DropResult) => {
+  const onDragEnd = ({
+    destination,
+    source,
+    draggableId,
+    type,
+  }: DropResult) => {
     // setHomeIndex(null);
 
-    document.body.style.color = "inherit";
-    document.body.style.backgroundColor = "inherit";
-    const { destination, source, draggableId, type } = result;
-
-    if (!destination) {
-      return;
-    }
-
+    // document.body.style.color = "inherit";
+    // document.body.style.backgroundColor = "inherit";
+    // 목적지가 없는경우
+    if (!destination) return;
+    // source 와 destination 이 완전 같은 경우
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
-    ) {
+    )
       return;
-    }
 
     if (type === "column") {
-      const newColumnOrder = Array.from(state.columnOrder);
+      const newColumnOrder = Array.from(columnOrder);
       newColumnOrder.splice(source.index, 1);
       newColumnOrder.splice(destination.index, 0, draggableId);
 
@@ -68,9 +62,7 @@ const TodoIndex = () => {
       };
       setState(newState);
       return;
-    }
-
-    if (type === "task") {
+    } else if (type === "task") {
       const startColumn = state.columns[source.droppableId];
       const finishColumn = state.columns[destination.droppableId];
 
@@ -134,29 +126,28 @@ const TodoIndex = () => {
         onDragUpdate={onDragUpdate}
       >
         <StrictModeDroppable
-          droppableId="all-columns"
+          droppableId="board"
           direction="horizontal"
           type="column"
         >
-          {(provided) => (
-            <Container {...provided.droppableProps} ref={provided.innerRef}>
-              {state.columnOrder.map((columnId, index) => {
-                const column = state.columns[columnId];
+          {({droppableProps, innerRef, placeholder}: DroppableProvided) => (
+            <Container {...droppableProps} ref={innerRef}>
+              {columnOrder.map((columnId, index) => {
+                const column = columns[columnId];
                 const tasks = column.taskIds.map(
                   (taskId) => state.tasks[taskId]
                 );
-                const isDropDisabled = false;
                 return (
                   <Column
                     key={column.id}
                     column={column}
                     tasks={tasks}
-                    isDropDisabled={isDropDisabled}
+                    isDropDisabled={false}
                     index={index}
                   />
                 );
               })}
-              {provided.placeholder}
+              {placeholder}
             </Container>
           )}
         </StrictModeDroppable>
