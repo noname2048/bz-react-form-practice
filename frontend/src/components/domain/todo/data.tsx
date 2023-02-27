@@ -1,6 +1,20 @@
 import { atom } from "recoil";
 import { InitData } from "./dataTypes";
 
+const kanbanInitData = {
+  columns: [
+    {
+      title: "오늘",
+      items: [{ content: "물마시기" }, { content: "쓰레기통 비우기" }],
+    },
+    {
+      title: "내일",
+      items: [{ content: "모니터 사기" }, { content: "요리하기" }],
+    },
+    { title: "모레", items: [{ content: "장보기" }] },
+  ],
+};
+
 const initialData = {
   tasks: {
     "task-1": { id: "task-1", content: "물마시기" },
