@@ -25,9 +25,6 @@ const init = [
   },
 ];
 
-const kanbanState = atom({
-  key: "kanbanState",
-  default: [],
-});
+const kanbanState = atom<Kanban>(init);
 
 export default kanbanState;
