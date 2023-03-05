@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import { Kanban } from "./types";
+import { KanbanType } from "./types";
 
-const init: Kanban = {
+const init: KanbanType = {
   id: "todo list",
   title: "todo list",
   columns: [
@@ -25,6 +25,6 @@ const init: Kanban = {
   ],
 };
 
-const kanbanState = atom<Kanban>({ key: "kanban", default: init });
+const kanbanState = atom<KanbanType>({ key: "kanban", default: init });
 
 export default kanbanState;

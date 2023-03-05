@@ -1,19 +1,19 @@
-interface Task {
+interface TaskType {
   id: string;
   content: string;
   is_done: boolean;
 }
 
-interface Column {
+interface ColumnType {
   id: string;
   title: string;
-  tasks: Task[];
+  tasks: TaskType[];
 }
 
-interface Kanban {
+interface KanbanType {
   id: string;
   title: string;
-  columns: Column[];
+  columns: ColumnType[];
 }
 
-export type { Task, Column, Kanban };
+export type { TaskType, ColumnType, KanbanType };
