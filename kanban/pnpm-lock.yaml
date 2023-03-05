@@ -9,6 +9,7 @@ specifiers:
   react-dom: ^18.2.0
   recoil: ^0.7.6
   styled-components: ^5.3.8
+  styled-reset: ^4.4.5
   typescript: ^4.9.3
   vite: ^4.1.0
 
@@ -18,6 +19,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
   styled-components: 5.3.8_7i5myeigehqah43i5u7wbekgba
+  styled-reset: 4.4.5_styled-components@5.3.8
 
 devDependencies:
   '@types/react': 18.0.28
@@ -943,6 +945,15 @@ packages:
       react-is: 18.2.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
+    dev: false
+
+  /styled-reset/4.4.5_styled-components@5.3.8:
+    resolution: {integrity: sha512-uEQzbCqSBbx1ZT9VuquoGOJyVzs3kMIMCyjxmtSo4/JoTCrq92UFTJx91KcdMncDaymz6NE8sgSvstHHcJjExg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      styled-components: '>=4.0.0 || >=5.0.0'
+    dependencies:
+      styled-components: 5.3.8_7i5myeigehqah43i5u7wbekgba
     dev: false
 
   /supports-color/5.5.0:
