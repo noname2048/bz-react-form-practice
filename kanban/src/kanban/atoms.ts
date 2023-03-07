@@ -15,7 +15,11 @@ const init: KanbanType = {
     {
       title: "today",
       id: "today",
-      tasks: [{ id: "get bug", content: "get bug", is_done: false }],
+      tasks: [
+        { id: "get bug", content: "get bug", is_done: false },
+        { id: "make feature", content: "make feature", is_done: false },
+        { id: "deploy", content: "deploy", is_done: false },
+      ],
     },
     {
       title: "tomorrow",

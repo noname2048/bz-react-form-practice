@@ -21,7 +21,7 @@ const Container = styled.div`
   padding: 10px;
 
   &:hover {
-    background-color: #888888;
+    border: 2px solid #888888;
   }
 `;
 const TaskContainer = styled.div`
